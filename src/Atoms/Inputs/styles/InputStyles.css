@@ -1,0 +1,11 @@
+.valid {
+  border: 2px solid rgba(39, 183, 39, 1);
+}
+
+.invalid, .error {
+  border: 2px solid rgba(221, 49, 49, 1)
+}
+
+.default {
+  border: 2px solid rgba(0, 0, 0, 1);
+}

@@ -1,5 +1,4 @@
-import { ChangeEvent, useState } from "react";
-import classNames from 'classnames';
+import { ChangeEvent } from "react";
 
 interface IInputNumber {
   placeholder: string;
@@ -11,11 +10,12 @@ interface IInputNumber {
 }
 
 export const InputNumber = ({ placeholder, name, disabled, value, required, onDataChange}: IInputNumber) => {
-  // const [phoneNumber, setPhoneNumber] = useState(value || '');
-
+  /**
+   * There is no number validation, so just type anything that is number
+   */
   const handlePhoneNumber = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = target;
-    // setPhoneNumber(value);
+
     onDataChange(value, name);
   };
 

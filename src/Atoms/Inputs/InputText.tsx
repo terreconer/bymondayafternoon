@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent } from "react";
 import classNames from 'classnames';
 
 interface IInputText {
@@ -11,17 +11,13 @@ interface IInputText {
 }
 
 export const InputText = ({ placeholder, name, disabled, required, value, onDataChange }: IInputText) => {
-  // const [inputValue, setInputValue] = useState(value);
-
+  /**
+   * There is no text validation yet so type anything that could be full name
+   */
   const handleInputValue = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = target;
-    // setInputValue(value);
     onDataChange(value, name);
   };
-
-  // useEffect(() => {
-  //   console.log(value, 'VALUE')
-  // }, [value]);
 
   return (
     <input

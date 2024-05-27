@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { InputText, Button } from '../../Atoms';
 import { TodoList } from '../../Molecules';
 
@@ -53,6 +53,7 @@ export const TodoForm = () => {
           onClickHandler={handleCollectData}
           type="button"
           title="Add"
+          disabled={!inputValue}
         />
       </div>
       <TodoList list={listData} onDeleteItem={handleDeleteItem} />

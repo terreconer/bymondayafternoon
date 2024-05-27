@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { InputText, InputEmail, InputNumber, LabelInput, InputCheckbox, Loader } from "../../../Atoms";
 import { Button } from "../../../Atoms/Buttons";
 import { useFormValidation, setUserData } from "../../../helpers";
@@ -46,7 +46,7 @@ export const LoginForm = () => {
   const handleInputChange = (value: string | boolean | null, name: string, ) => {
     setFormData(prev => ({
       ...prev,
-      [name]: {
+      [name as keyof IFormProps]: {
         ...prev[name as keyof IFormProps],
         value: value,
       },
@@ -54,7 +54,6 @@ export const LoginForm = () => {
   };
 
   const handleLoader = (data: boolean) => {
-    if (!data) return;
     setIsLoading(false);
     setFormData(initState);
 
@@ -65,10 +64,10 @@ export const LoginForm = () => {
     if (!isFormValid) return;
 
     setIsLoading(isFormValid);
-    setUserData(formData, 'useData', handleLoader);
+    setUserData(formData, 'userData', handleLoader);
   };
 
-  const { email, fullName, phone, agreement } = formData;
+  const { email, fullName, phone } = formData;
 
   if (isLoading) {
     //this crutch is just to emulate loader behavoir

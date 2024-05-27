@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { validateEmail } from '../../helpers';
 import classNames from 'classnames';
 import './styles/InputStyles.css';
@@ -14,28 +14,25 @@ interface IInputEmail {
 
 export const InputEmail = ({ placeholder, name, disabled, required, value, onDataChange }: IInputEmail) => {
   const [isInputValid, setIsValid] = useState<boolean | null>(null);
-  // const [email, setEmail] = useState(value || '');
+
+  const inputClasses = classNames({
+    'default': isInputValid === null,
+    'valid': isInputValid,
+    'error': isInputValid === false,
+  })
 
   const handleEmailValueChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = target;
     const isValid = validateEmail(value);
   
-    // setEmail(value);
     setIsValid(isValid);
     onDataChange(value, name);
   };
 
-  const handleTestedValue = () => {
-    const result = isInputValid ? value : null;
-    // onDataChange(result);
-  };
-
-  // useEffect(() => {}, []);
-
   return (
     <>
       <input
-        className='default input'
+        className={inputClasses}
         type="email"
         name={name}
         value={value || ''}
@@ -43,7 +40,6 @@ export const InputEmail = ({ placeholder, name, disabled, required, value, onDat
         placeholder={placeholder}
         onInput={handleEmailValueChange}
         required={required}
-        // onInput={handleTestedValue}
       />
     </>
   );
